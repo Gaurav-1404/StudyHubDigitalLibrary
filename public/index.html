@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Fee Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Study Hub digital Library </h1>
+
+        <div class="form-container">
+            <h2>Register New Student</h2>
+            <form id="studentForm">
+                <input type="text" id="name" placeholder="Student Name" required>
+                <input type="text" id="aadhar" placeholder="Aadhar Card Number" required>
+                <input type="text" id="address" placeholder="Address" required>
+                <input type="text" id="mobile" placeholder="Mobile Number" required><br>
+                <div class="form-row">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                <button type="submit">Add Student</button>
+            </form>
+        </div>
+
+        <div class="students-container">
+            <div class="active-students">
+                <h2>Active Students</h2>
+                <table id="activeStudentsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>End Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="due-students">
+                <h2>Fee Due Students</h2>
+                <table id="dueStudentsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Fee Due Since</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="all-students-container">
+            <h2>All Registered Students</h2>
+            <<table id="allStudentsTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Aadhar</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Months Paid</th> <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        </tbody>
+</table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
