@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dueStudentsTable = document.getElementById('dueStudentsTable').getElementsByTagName('tbody')[0];
     const allStudentsTable = document.getElementById('allStudentsTable').getElementsByTagName('tbody')[0];
 
-    const API_URL = 'http://localhost:3000/students';
+    const API_URL = 'https://studyhubdigitallibrary-3jqi.onrender.com/students';
 
     fetchStudents();
 
@@ -148,4 +148,5 @@ studentForm.addEventListener('submit', async (e) => {
             console.error('Error:', error);
         }
     }
+
 });
