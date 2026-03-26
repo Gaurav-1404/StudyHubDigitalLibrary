@@ -45,25 +45,28 @@ app.get('/students', (req, res) => {
 });
 
 app.post('/students', (req, res) => {
-    // The incoming data from the frontend is in req.body
     const { name, aadhar, address, mobile, startDate, endDate, monthsPaid } = req.body;
-    
-    // The SQL query expects 7 values
+
+    // ✅ VALIDATION (ADD THIS BLOCK)
+    if (!/^\d{10}$/.test(mobile)) {
+        return res.status(400).json({ error: "Mobile must be exactly 10 digits" });
+    }
+
+    if (!/^\d{12}$/.test(aadhar)) {
+        return res.status(400).json({ error: "Aadhar must be exactly 12 digits" });
+    }
+
+    // SQL insert
     const sql = `INSERT INTO students (name, aadhar, address, mobile, startDate, endDate, monthsPaid) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    
-    // The 'params' array should also have 7 values
+
     const params = [name, aadhar, address, mobile, startDate, endDate, monthsPaid];
 
     db.run(sql, params, function(err) {
         if (err) {
-            // THIS IS THE LINE WE ADDED FOR DEBUGGING
-            // It will print the detailed error to your CMD/terminal window.
-            console.error("DATABASE ERROR:", err.message); 
-            
-            res.status(400).json({ "error": err.message });
-            return;
+            console.error("DATABASE ERROR:", err.message);
+            return res.status(400).json({ error: err.message });
         }
-        res.status(201).json({ "message": "success", "id": this.lastID });
+        res.status(201).json({ message: "success", id: this.lastID });
     });
 });
 

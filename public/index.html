@@ -15,9 +15,9 @@
             <h2>Register New Student</h2>
             <form id="studentForm">
                 <input type="text" id="name" placeholder="Student Name" required>
-                <input type="text" id="aadhar" placeholder="Aadhar Card Number" required>
+                <input type="text" id="aadhar" maxlength="12" oninput="this.value=this.value.replace(/[^0-9]/g,'')" pattern="[0-9]{12}" placeholder="Aadhar Card Number" required>
                 <input type="text" id="address" placeholder="Address" required>
-                <input type="text" id="mobile" placeholder="Mobile Number" required><br>
+                <input type="text" id="mobile" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')" pattern="[0-9]{10}" placeholder="Mobile Number" required><br>
                 <div class="form-row">
                     <label for="startDate">Start Date:</label>
                     <input type="date" id="startDate" required>

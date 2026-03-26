@@ -12,19 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 studentForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const mobile = document.getElementById('mobile').value;
+    const aadhar = document.getElementById('aadhar').value;
+
+    // ✅ VALIDATION (ADD THIS)
+    if (!/^\d{10}$/.test(mobile)) {
+        alert("Mobile number must be exactly 10 digits");
+        return;
+    }
+
+    if (!/^\d{12}$/.test(aadhar)) {
+        alert("Aadhar must be exactly 12 digits");
+        return;
+    }
+
     const startDate = document.getElementById('startDate').value;
     const endDate = new Date(startDate);
     endDate.setMonth(endDate.getMonth() + 1);
 
-    // The object that gets sent to the server
     const studentData = {
         name: document.getElementById('name').value,
-        aadhar: document.getElementById('aadhar').value,
+        aadhar: aadhar,
         address: document.getElementById('address').value,
-        mobile: document.getElementById('mobile').value,
+        mobile: mobile,
         startDate: startDate,
         endDate: endDate.toISOString().split('T')[0],
-        monthsPaid: 1 // <-- ADD THIS LINE
+        monthsPaid: 1
     };
 
     try {
@@ -33,11 +47,13 @@ studentForm.addEventListener('submit', async (e) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData),
         });
+
         if (response.ok) {
+            alert("Student Added Successfully ✅"); // optional
             studentForm.reset();
             fetchStudents();
         } else {
-            console.error('Failed to add student'); // This is what you were seeing
+            console.error('Failed to add student');
         }
     } catch (error) {
         console.error('Error:', error);
